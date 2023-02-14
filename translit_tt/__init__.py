@@ -1,1 +1,2 @@
-from .
+from .translit import translit
+

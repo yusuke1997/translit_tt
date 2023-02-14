@@ -180,7 +180,7 @@ class translit():
         return head,predicted
 
     
-    def predict(self,words):
+    def translit(self,words):
         deal_punctuation_words=''
         for s in words:
             if s in string.punctuation+'”':
@@ -231,6 +231,6 @@ if __name__ =='__main__':
     while(True):
         words=input()
         if words in ['\n','']:break
-        result=pred.predict(words)
+        result=pred.translit(words)
         print(result)
         #print(predict_language(words,model)[0])
