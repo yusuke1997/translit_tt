@@ -1,18 +1,48 @@
 from fasttext import load_model
+import logging
 import string
 import codecs
 from subword_nmt import apply_bpe
 import transfer
-#from  bert_tokenize import bert_tokenize
 
-class predict():
+logger = logging.getLogger(__name__)
+
+class translit():
     def __init__(self):
         self.trans = transfer.trans()
-        self.model = load_model("model/langdetect.bin")
-        self.codes = codecs.open('model/model.bpe', encoding='utf-8')
+        self.model = self.get_or_load_model('model')
+        self.codes = self.get_or_load_model('bpe')
         self.bpe = apply_bpe.BPE(codes=self.codes)
         self.table = str.maketrans('', '', string.punctuation)
-        #self.bert_tokenize = bert_tokenize()
+        self.FTLANG_CACHE = os.getenv("FTLANG_CACHE", "/tmp/translit_tt")
+
+    def download_model(self, name: str) -> str:
+        _path = {'model': "https://www.dropbox.com/s/iist24l59kcrbv9/langdetect.bin",
+                 'vocab': "https://www.dropbox.com/s/e06a3x6xbqua0jm/langdetect.vec",
+                 'bpe'  : "https://www.dropbox.com/s/igiksyf2qkog9ts/model.bpe"}
+        
+        target_path = os.path.join(self.FTLANG_CACHE, _path[name])
+        if not os.path.exists(target_path):
+            logger.info(f"Downloading {name} model ...")
+
+            os.makedirs(self.FTLANG_CACHE, exist_ok=True)
+            with open(target_path, "wb") as fp:
+                response = requests.get(url)
+                fp.write(response.content)
+            logger.info(f"Downloaded.")
+        return target_path
+
+    def get_or_load_model(self, name: str):
+        model_path = self.download_model(name)
+        if name=='model':
+            model = load_model(model_path)
+        elif name=='bpe':
+            model = codecs.open(model_path, encoding='utf-8')
+        else:
+            raise NotImplementedError
+            
+        return model
+
         
     def remove(self,sentence,lower_case=True,only_lower=False):
         words = sentence.split()

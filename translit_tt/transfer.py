@@ -6,7 +6,7 @@ import logging
 from cy2lt import tatar_trans
 sys.path.append('../')
 
-class trans():
+class translit():
     def __init__(self):
         yml_files=glob.glob('./alphabet/*.yml')
         assert len(yml_files)!=0,'Any yaml file is not exist'
@@ -26,6 +26,7 @@ class trans():
 
         self.alphabets_list['tat'] = 'this is unknown'
         self.tatar = tatar_trans()
+
 
     def tokenize(self,text,lang):
         new_text = list(text)
