@@ -3,7 +3,7 @@ import logging
 import string
 import codecs
 from subword_nmt import apply_bpe
-import .transfer
+from .transfer import transfer
 logger = logging.getLogger(__name__)
 
 class translit():
