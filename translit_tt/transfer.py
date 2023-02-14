@@ -3,7 +3,7 @@ import os
 import sys
 import yaml
 import logging
-from .cy2lt import tatar_trans
+from cy2lt import tatar_trans
 sys.path.append('../')
 
 class transfer():
