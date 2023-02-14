@@ -3,10 +3,10 @@ import os
 import sys
 import yaml
 import logging
-from cy2lt import tatar_trans
+from .cy2lt import tatar_trans
 sys.path.append('../')
 
-class translit():
+class transfer():
     def __init__(self):
         yml_files=glob.glob('./alphabet/*.yml')
         assert len(yml_files)!=0,'Any yaml file is not exist'
