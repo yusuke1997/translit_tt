@@ -3,12 +3,12 @@ import logging
 import string
 import codecs
 from subword_nmt import apply_bpe
-from .transfer import transfer
+from .transfer import trans
 logger = logging.getLogger(__name__)
 
 class translit():
     def __init__(self):
-        self.trans = transfer.trans()
+        self.trans = trans()
         self.model = self.get_or_load_model('model')
         self.codes = self.get_or_load_model('bpe')
         self.bpe = apply_bpe.BPE(codes=self.codes)
