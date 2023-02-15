@@ -20,9 +20,9 @@ class translit():
 
     def download_model(self, name: str) -> str:
         FTLANG_CACHE = os.getenv("FTLANG_CACHE", "/tmp/translit_tt")
-        _path = {'model': "https://www.dropbox.com/s/iist24l59kcrbv9/langdetect.bin",
-                 'vocab': "https://www.dropbox.com/s/e06a3x6xbqua0jm/langdetect.vec",
-                 'bpe'  : "https://www.dropbox.com/s/igiksyf2qkog9ts/model.bpe"}
+        _path = {'model': "https://www.dropbox.com/s/iist24l59kcrbv9/langdetect.bin?dl=1",
+                 'vocab': "https://www.dropbox.com/s/e06a3x6xbqua0jm/langdetect.vec?dl=1",
+                 'bpe'  : "https://www.dropbox.com/s/igiksyf2qkog9ts/model.bpe?dl=1"}
         _name = {'model': 'langdetect.bin',
                  'vocab': 'langdetect.vec',
                  'bpe'  : 'model.bpe'}
