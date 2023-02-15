@@ -1,25 +1,19 @@
 import glob
 import os
 import sys
-import yaml
 import logging
 from .cy2lt import tatar_trans
-sys.path.append('../')
 
 class trans:
     def __init__(self):
-        path = os.path.dirname(os.path.abspath(__file__))
-        print(path)
-        yml_files=glob.glob(f'{path}/alphabet/*.yml')
-        assert len(yml_files)!=0,'Any yaml file is not exist'
 
         self.alphabets_list= dict()
-        self.alphabets_list['rus'] = {'Ё': 'Yo', 'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G','Д': 'D,'
+        self.alphabets_list['rus'] = {'Ё': 'Yo', 'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G','Д': 'D',
                                       'Е': 'E', 'Ж': 'J', 'З': 'Z', 'И': 'İ', 'Й': 'Y', 'К': 'K',
                                       'Л': 'L', 'М': 'M', 'Н': 'N', 'О': 'O', 'П': 'P', 'Р': 'R',
                                       'С': 'S', 'Т': 'T', 'У': 'U', 'Ф': 'F', 'Х': 'X', 'Ц': 'Ts',
                                       'Ч': 'Ç', 'Ш': 'Ş', 'Щ': 'Şç', 'Ъ': '', 'Ь': '', 'Ы': 'I',
-                                      'Э': 'E', 'Ю': 'Yu','Я': 'Ya','а': 'a', 'б': 'b', 'в': 'v'.
+                                      'Э': 'E', 'Ю': 'Yu','Я': 'Ya','а': 'a', 'б': 'b', 'в': 'v',
                                       'г': 'g', 'д': 'd', 'е': 'e', 'ж': 'j', 'з': 'z', 'и': 'i',
                                       'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o',
                                       'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f',
@@ -27,7 +21,7 @@ class trans:
                                       'ы': 'ı', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya', 'ё': 'yo',
                                       'ия': 'iyä'}
 
-        self.alphabets_list['tat'] = None'this is unknown'
+        self.alphabets_list['tat'] = None
         self.tatar = tatar_trans()
 
     def tokenize(self,text,lang):
