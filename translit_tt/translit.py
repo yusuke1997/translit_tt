@@ -11,11 +11,11 @@ logger = logging.getLogger(__name__)
 class translit():
     def __init__(self):
         self.trans = trans()
+        self.FTLANG_CACHE = os.getenv("FTLANG_CACHE", "/tmp/translit_tt")
         self.model = self.get_or_load_model('model')
         self.codes = self.get_or_load_model('bpe')
         self.bpe = apply_bpe.BPE(codes=self.codes)
         self.table = str.maketrans('', '', string.punctuation)
-        self.FTLANG_CACHE = os.getenv("FTLANG_CACHE", "/tmp/translit_tt")
 
     def download_model(self, name: str) -> str:
         _path = {'model': "https://www.dropbox.com/s/iist24l59kcrbv9/langdetect.bin",
