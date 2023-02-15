@@ -18,11 +18,12 @@ class translit():
         self.table = str.maketrans('', '', string.punctuation)
 
     def download_model(self, name: str) -> str:
+        FTLANG_CACHE = os.getenv("FTLANG_CACHE", "/tmp/translit_tt")
         _path = {'model': "https://www.dropbox.com/s/iist24l59kcrbv9/langdetect.bin",
                  'vocab': "https://www.dropbox.com/s/e06a3x6xbqua0jm/langdetect.vec",
                  'bpe'  : "https://www.dropbox.com/s/igiksyf2qkog9ts/model.bpe"}
         
-        target_path = os.path.join(self.FTLANG_CACHE, _path[name])
+        target_path = os.path.join(FTLANG_CACHE, _path[name])
         if not os.path.exists(target_path):
             logger.info(f"Downloading {name} model ...")
 
