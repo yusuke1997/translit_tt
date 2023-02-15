@@ -9,6 +9,7 @@ sys.path.append('../')
 class trans:
     def __init__(self):
         path = os.path.dirname(os.path.abspath(__file__))
+        print(path)
         yml_files=glob.glob(f'{path}/alphabet/*.yml')
         assert len(yml_files)!=0,'Any yaml file is not exist'
 
