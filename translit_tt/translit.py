@@ -2,6 +2,8 @@ from fasttext import load_model
 import logging
 import string
 import codecs
+import os
+import sys
 from subword_nmt import apply_bpe
 from .transfer import trans
 logger = logging.getLogger(__name__)
