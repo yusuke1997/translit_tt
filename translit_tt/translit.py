@@ -4,6 +4,7 @@ import string
 import codecs
 import os
 import sys
+import requests
 from subword_nmt import apply_bpe
 from .transfer import trans
 logger = logging.getLogger(__name__)
