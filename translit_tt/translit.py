@@ -22,14 +22,17 @@ class translit():
         _path = {'model': "https://www.dropbox.com/s/iist24l59kcrbv9/langdetect.bin",
                  'vocab': "https://www.dropbox.com/s/e06a3x6xbqua0jm/langdetect.vec",
                  'bpe'  : "https://www.dropbox.com/s/igiksyf2qkog9ts/model.bpe"}
+        _name = {'model': 'langdetect.bin',
+                 'vocab': 'langdetect.vec',
+                 'bpe'  : 'model.bpe'}
         
-        target_path = os.path.join(FTLANG_CACHE, _path[name])
+        target_path = os.path.join(FTLANG_CACHE, _name[name])
         if not os.path.exists(target_path):
             logger.info(f"Downloading {name} model ...")
 
-            os.makedirs(self.FTLANG_CACHE, exist_ok=True)
+            os.makedirs(FTLANG_CACHE, exist_ok=True)
             with open(target_path, "wb") as fp:
-                response = requests.get(url)
+                response = requests.get(_path[name])
                 fp.write(response.content)
             logger.info(f"Downloaded.")
         return target_path
